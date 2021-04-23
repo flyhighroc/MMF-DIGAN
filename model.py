@@ -309,7 +309,7 @@ class DINet():
         # Extract feature representation
         features = dense_layer(y, 1024)
 
-        # Determine validity of the image
+        # Determine label of the image
         label = Dense(self.num_classes, activation="softmax")(features)
 
         model = Model(img, label, name='Classifier')
@@ -344,11 +344,7 @@ class DINet():
         for epoch in range(1, epochs+1):
             
             start_time = time.time()
-
-            # ---------------------
-            #  Train Discriminator
-            # ---------------------
-           
+         
             idx_r = np.random.randint(0, X1_train.shape[0], batch_size)
             # Select a random batch of images
             x1_r = X1_train[idx_r]
@@ -437,7 +433,7 @@ class DINet():
 #        fig.savefig(image_path+"%d.png" % epoch)
 #        plt.close()
         
-    # Save the generator and discriminator networks (and weights) for later use
+    # Save the networks (and weights) for later use
     def save_model(self, epoch):
         self.decoder.save(model_path+'DINet_decoder_epoch_%d.h5' % epoch)
         self.encoder.save(model_path+'DINet_encoder_epoch_%d.h5' % epoch)     
