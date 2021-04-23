@@ -12,7 +12,6 @@ def set_trainable(model, train):
     for l in model.layers:
         l.trainable = train
 
-
 def zero_loss(y_true, y_pred):
     """
     args:
