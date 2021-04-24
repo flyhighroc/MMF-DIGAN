@@ -15,7 +15,7 @@ class DecoderLossLayer(Layer):
         super(DecoderLossLayer, self).__init__(**kwargs)
 
     def lossfun(self, x_true, x_pred):
-        return 10**3 * K.mean(tf.keras.losses.mean_squared_error(x_true, x_pred))
+        return K.mean(tf.keras.losses.mean_squared_error(x_true, x_pred))
 
     def call(self, inputs):
         x_true = inputs[0]
@@ -33,7 +33,7 @@ class EncoderLossLayer(Layer):
         super(EncoderLossLayer, self).__init__(**kwargs)
 
     def lossfun(self, z_true, z_pred):
-        return 10**3 * K.mean(tf.keras.losses.binary_crossentropy(z_true, z_pred))
+        return K.mean(tf.keras.losses.binary_crossentropy(z_true, z_pred))
 
     def call(self, inputs):
         z_true = inputs[0]
@@ -95,7 +95,7 @@ class GeneratorLossLayer(Layer):
     def lossfun(self, x_true, x_pred_f, x_pred_p):
         loss_f = tf.keras.losses.mean_squared_error(x_true, x_pred_f)
         loss_p = tf.keras.losses.mean_squared_error(x_true, x_pred_p)
-        return 10**3 * K.mean(loss_f + loss_p)
+        return K.mean(loss_f + loss_p)
  
     def call(self, inputs):
         x_true = inputs[0]

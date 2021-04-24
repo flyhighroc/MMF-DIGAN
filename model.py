@@ -329,7 +329,7 @@ class DINet():
         y = y.reshape(y.shape[0],y.shape[1]*y.shape[2])
         y_all = np.tile(y, (10,1))
         print('dmd shape:', y_all.shape)
-        label_all = np.array(list(range(10))).repeat(12000)
+        label_all = np.array(list(range(10))).repeat(10000)
         label_all = label_all.reshape(-1, 1)
         print('label shape:', label_all.shape)
         
